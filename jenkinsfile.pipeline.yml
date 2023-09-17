@@ -1,0 +1,10 @@
+base_ei_project: https://devops.splonline.com.sa/SPLDigitalCollection/Integration_WSO2/_git/SPLCICDTest
+notify_users: mjavid@splonline.com.sa
+environments:
+    main:
+        sample: "sample"
+        "SolarSystemEP": "http://10.15.127.112:8983/solr/{uri.var.so}/select"
+        
+
+
+        
