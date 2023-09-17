@@ -1,95 +1,26 @@
 pipeline {
-
     agent any
-
  
-
     stages {
-
-        stage('Build') {
-
+        stage('Checkout') {
             steps {
-
+                // Check out code from the GitHub repository
                 script {
-
-                    def usernameToApprove = 'specific_user' // Replace with the actual username
-
-
-                    // Prompt for user input
-
-                    def userInput = input(
-
-                        id: 'userInput', 
-
-                        message: 'Do you want to proceed with the build?',
-
-                        ok: 'Proceed',
-
-                        submitter: usernameToApprove, // Display the button only to the specified user
-
-                        parameters: [
-
-                            choice(
-
-                                name: 'PROCEED',
-
-                                choices: 'Yes\nNo',
-
-                                description: 'Choose whether to proceed'
-
-                            )
-
-                        ]
-
-                    )
-
-                                   def css = """
-
-        <style>
-
-            .proceed-button{
-
-    display: none !important;
-
-}
-
-        </style>
-
-    """
-
- 
-
-                    // Check the user's input
-
-                    if (userInput == 'Yes') {
-
-                        echo 'Building...'
-
-                        // Add build steps here
-
-                    } else {
-
-                        echo 'Build not proceeding.'
-
-                    }
-
+                    def gitCredentials = credentials('Srinidhi1006') // Replace with your credentials ID
+                    checkout([$class: 'GitSCM', 
+                         branches: [[name: 'main']], 
+                         userRemoteConfigs: [[url: 'https://github.com/Srinidhi1006/jenkinsRepo.git', credentialsId: gitCredentials]]])
                 }
-
             }
-
         }
-
-    }
-
-
-    post {
-
-        always {
-
-            echo 'Build finished'
-
+ 
+        stage('Build') {
+            steps {
+                // Your build steps here
+                sh 'mvn clean install' // Example Maven build command
+            }
         }
-
+ 
+        // Add more stages for testing, deployment, etc.
     }
-
 }
