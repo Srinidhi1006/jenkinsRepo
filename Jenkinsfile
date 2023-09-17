@@ -1,5 +1,3 @@
-[16:53] Naveen k. Gondru
-
 pipeline {
 
     agent any
