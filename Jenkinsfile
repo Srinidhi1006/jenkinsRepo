@@ -23,7 +23,7 @@ pipeline {
 
          bat (returnStdout: true, script: "cd C:/ProgramData/Jenkins/.jenkins/workspace/Hello_master && mvn clean install -Dmaven.test.skip=true || echo success")
 
-          echo "Exit Build in Maven"
+          echo "Exit Build Maven"
 
 
         }
