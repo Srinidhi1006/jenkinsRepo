@@ -14,15 +14,22 @@ pipeline {
                 }
             }
         }
-		stage("Check API stauts"){
-		steps{
-		echo "Check API status"
-			HTTP Method: GET 
-            URL: https://localhost:9164/management/applications?carbonAppName=helloWorldCompositeExporter
-            Header Name: Authorization
-			Header Value: Bearer eyJraWQiOiIxY2ViNzdiMC1hMTU0LTRmNTktYTVjNS05ZjZhNzJmMGFkN2QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMDowOjA6MDowOjA6MDoxOjkxNjRcLyIsInN1YiI6ImFkbWluIiwiZXhwIjoxNjk1MTI0NjI2LCJzY29wZSI6ImFkbWluIn0.idmZx5D24Ng3FtQaiXI608K1043abo_xFQLsyE0w3njz2OGbn78ncx59_zxnmpDU2xwyBMCKGWDsZf3-GB5kmJhCgjGdkJncivm18ZCAUhXguLE0JFOz8tfHh-LGR9UGIDLZ3vp-my0wZzLUAS_lQUJEcO0jSJ5c5-7-rH5TqZR9h1Zlw5qFnZCFpR9Yk0E_xA4NpUjcigabuNt4wbwyfevOpWTMaDlR6SowJ3f2A9x6sQt9HLW2E0BYIHfrTySZdCL8UkjVh-8svCH9ppE8OvjrV8wTRcNB2Llz5TCAlyWY9C-uX-qNbI3ALDUhHBcF7dMubmjXoWmRqrluJqEGxg
-			}
-			}
+		
+		
+		 stage("Check API Status") {
+            steps {
+                echo "Check API status"
+
+                // Use the HTTP Request Plugin to make the GET request
+                httpRequest(
+                    acceptType: 'APPLICATION_JSON',
+                    contentType: 'APPLICATION_JSON',
+                    httpMode: 'GET',
+                    url: 'https://localhost:9164/management/applications?carbonAppName=helloWorldCompositeExporter',
+                    customHeaders: [[name: 'Authorization', value: 'Bearer eyJraWQiOiIxY2ViNzdiMC1hMTU0LTRmNTktYTVjNS05ZjZhNzJmMGFkN2QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvMDowOjA6MDowOjA6MDoxOjkxNjRcLyIsInN1YiI6ImFkbWluIiwiZXhwIjoxNjk1MTI0NjI2LCJzY29wZSI6ImFkbWluIn0.idmZx5D24Ng3FtQaiXI608K1043abo_xFQLsyE0w3njz2OGbn78ncx59_zxnmpDU2xwyBMCKGWDsZf3-GB5kmJhCgjGdkJncivm18ZCAUhXguLE0JFOz8tfHh-LGR9UGIDLZ3vp-my0wZzLUAS_lQUJEcO0jSJ5c5-7-rH5TqZR9h1Zlw5qFnZCFpR9Yk0E_xA4NpUjcigabuNt4wbwyfevOpWTMaDlR6SowJ3f2A9x6sQt9HLW2E0BYIHfrTySZdCL8UkjVh-8svCH9ppE8OvjrV8wTRcNB2Llz5TCAlyWY9C-uX-qNbI3ALDUhHBcF7dMubmjXoWmRqrluJqEGxg']]
+                )
+            }
+        }
 		
  
        stage("Build in Maven"){
