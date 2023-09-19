@@ -2,6 +2,7 @@ pipeline {
     agent any
  
     stages {
+	def build_result=""
         stage('Checkout') {
             steps {
                 // Check out code from the GitHub repository
