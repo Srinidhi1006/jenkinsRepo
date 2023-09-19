@@ -2,7 +2,7 @@ pipeline {
     agent any
  
     stages {
-	def build_result=""
+	
         stage('Checkout') {
             steps {
                 // Check out code from the GitHub repository
@@ -21,7 +21,7 @@ pipeline {
             echo "Enter Build in Maven"
 
 
-          build_result = bat (returnStdout: true, script: "cd C:/ProgramData/Jenkins/.jenkins/workspace/Hello_master && mvn clean install -Dmaven.test.skip=true || echo success")
+         bat (returnStdout: true, script: "cd C:/ProgramData/Jenkins/.jenkins/workspace/Hello_master && mvn clean install -Dmaven.test.skip=true || echo success")
 
           echo "Exit Build in Maven"
 
