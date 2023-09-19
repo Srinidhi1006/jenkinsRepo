@@ -14,11 +14,16 @@ pipeline {
             }
         }
  
-        stage('Build') {
-            steps {
-                // Your build steps here
-                sh 'mvn clean install' // Example Maven build command
-            }
+       stage("Build in Maven"){
+
+            echo "Enter Build in Maven"
+
+
+          build_result = bat (returnStdout: true, script: "cd C:\ProgramData\Jenkins\.jenkins\workspace\Hello_master && mvn clean install -Dmaven.test.skip=true || echo success")
+
+          echo "Exit Build in Maven"
+
+
         }
  
         // Add more stages for testing, deployment, etc.
