@@ -15,6 +15,7 @@ pipeline {
         }
  
        stage("Build in Maven"){
+	   steps {
 
             echo "Enter Build in Maven"
 
@@ -25,6 +26,7 @@ pipeline {
 
 
         }
+		}
  
         // Add more stages for testing, deployment, etc.
     }
