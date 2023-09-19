@@ -9,7 +9,7 @@ pipeline {
                     def gitCredentials = credentials('Srinidhi1006') // Replace with your credentials ID
                     checkout([$class: 'GitSCM', 
                          branches: [[name: 'main']], 
-                         userRemoteConfigs: [[url: 'https://github.com/Srinidhi1006/jenkinsRepo.git', credentialsId: gitCredentials]]])
+                         userRemoteConfigs: [[url: 'https://github.com/Srinidhi1006/jenkinsRepo.git', Srinidhi1006: gitCredentials]]])
                 }
             }
         }
